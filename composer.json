@@ -1,0 +1,29 @@
+{
+    "name": "celios/crm",
+    "description": "Modular, pluggable CRM engine for Celios CMS supporting local management and third-party CRM drivers.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lazar Celic",
+            "email": "celiclazar@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^11.0|^12.0|^13.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Crm\\": ""
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Crm\\CrmServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+}
