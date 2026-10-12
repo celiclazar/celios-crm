@@ -103,4 +103,9 @@ class Contact extends Model
             'lost' => 'danger',
         ];
     }
+
+    public function displayTitle(): string
+    {
+        return $this->name ?: $this->company ?: $this->email ?: __('crm.unnamed_contact');
+    }
 }

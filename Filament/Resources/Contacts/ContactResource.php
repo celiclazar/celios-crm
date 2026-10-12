@@ -92,4 +92,9 @@ class ContactResource extends Resource
     {
         return __('crm.contact_single');
     }
+
+    public static function getRecordTitle(?\Illuminate\Database\Eloquent\Model $record): ?string
+    {
+        return $record instanceof Contact ? $record->displayTitle() : null;
+    }
 }
