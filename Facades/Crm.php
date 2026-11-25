@@ -12,7 +12,7 @@ use Modules\Crm\Services\CrmService;
  * @method static array logActivity(string|int $contactIdentifier, \Modules\Crm\DTO\CrmActivityData|array $activity)
  * @method static \Modules\Crm\Models\Contact createFromFormSubmission(int $submissionId, array $data)
  *
- * @see \Modules\Crm\Services\CrmService
+ * @see CrmService
  */
 class Crm extends Facade
 {

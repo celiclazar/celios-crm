@@ -7,6 +7,7 @@ use Celios\Core\Filament\Traits\HasModuleToggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Crm\Filament\Resources\Contacts\Pages\CreateContact;
 use Modules\Crm\Filament\Resources\Contacts\Pages\EditContact;
 use Modules\Crm\Filament\Resources\Contacts\Pages\ListContacts;
@@ -93,7 +94,7 @@ class ContactResource extends Resource
         return __('crm.contact_single');
     }
 
-    public static function getRecordTitle(?\Illuminate\Database\Eloquent\Model $record): ?string
+    public static function getRecordTitle(?Model $record): ?string
     {
         return $record instanceof Contact ? $record->displayTitle() : null;
     }

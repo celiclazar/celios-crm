@@ -4,6 +4,4 @@ namespace Modules\Crm\Exceptions;
 
 use Exception;
 
-class CrmDriverException extends Exception
-{
-}
+class CrmDriverException extends Exception {}

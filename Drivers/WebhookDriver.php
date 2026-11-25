@@ -12,7 +12,7 @@ use Modules\Crm\DTO\CrmContactData;
 use Modules\Crm\DTO\CrmSyncResponse;
 use Throwable;
 
-class WebhookDriver extends AbstractCrmDriver implements SyncsContactsInterface, SyncsActivitiesInterface, HandlesWebhooksInterface
+class WebhookDriver extends AbstractCrmDriver implements HandlesWebhooksInterface, SyncsActivitiesInterface, SyncsContactsInterface
 {
     public function testConnection(): bool
     {

@@ -8,10 +8,9 @@ use Modules\Crm\DTO\CrmActivityData;
 use Modules\Crm\DTO\CrmContactData;
 use Modules\Crm\DTO\CrmSyncResponse;
 use Modules\Crm\Models\Contact;
-use Modules\Crm\Models\ContactNote;
 use Throwable;
 
-class LocalDatabaseDriver extends AbstractCrmDriver implements SyncsContactsInterface, SyncsActivitiesInterface
+class LocalDatabaseDriver extends AbstractCrmDriver implements SyncsActivitiesInterface, SyncsContactsInterface
 {
     public function upsertContact(CrmContactData $contactData): CrmSyncResponse
     {
@@ -63,6 +62,7 @@ class LocalDatabaseDriver extends AbstractCrmDriver implements SyncsContactsInte
 
             if ($contact) {
                 $contact->delete();
+
                 return CrmSyncResponse::successful($identifier, 'Contact deleted from local database.');
             }
 

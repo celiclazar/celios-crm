@@ -11,18 +11,18 @@ class CrmSyncResponse
         public array $rawPayload = [],
     ) {}
 
-    public static function successful(?string $externalId = null, ?string $message = 'Synced successfully'): static
+    public static function successful(?string $externalId = null, ?string $message = 'Synced successfully'): self
     {
-        return new static(
+        return new self(
             success: true,
             externalId: $externalId,
             message: $message,
         );
     }
 
-    public static function failed(string $message, array $rawPayload = []): static
+    public static function failed(string $message, array $rawPayload = []): self
     {
-        return new static(
+        return new self(
             success: false,
             externalId: null,
             message: $message,

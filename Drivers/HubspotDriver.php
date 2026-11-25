@@ -10,7 +10,7 @@ use Modules\Crm\DTO\CrmContactData;
 use Modules\Crm\DTO\CrmSyncResponse;
 use Throwable;
 
-class HubspotDriver extends AbstractCrmDriver implements SyncsContactsInterface, SyncsActivitiesInterface
+class HubspotDriver extends AbstractCrmDriver implements SyncsActivitiesInterface, SyncsContactsInterface
 {
     protected string $baseUrl = 'https://api.hubapi.com';
 
@@ -113,7 +113,7 @@ class HubspotDriver extends AbstractCrmDriver implements SyncsContactsInterface,
                 ->post("{$this->baseUrl}/crm/v3/objects/{$hubspotType}", [
                     'properties' => [
                         'hs_note_body' => $activity->content,
-                        'hs_timestamp' => ($activity->occurredAt ?? now())->toIso8601String(),
+                        'hs_timestamp' => ($activity->occurredAt ?? now())->format(\DateTimeInterface::ATOM),
                     ],
                 ]);
 

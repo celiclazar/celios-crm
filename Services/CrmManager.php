@@ -13,7 +13,6 @@ use Modules\Crm\Drivers\WebhookDriver;
 use Modules\Crm\DTO\CrmActivityData;
 use Modules\Crm\DTO\CrmContactData;
 use Modules\Crm\DTO\CrmSyncResponse;
-use Modules\Crm\Exceptions\CrmDriverNotFoundException;
 
 class CrmManager extends Manager
 {

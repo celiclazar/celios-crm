@@ -19,9 +19,9 @@ class CrmContactData
         public array $customFields = [],
     ) {}
 
-    public static function fromArray(array $data): static
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             name: (string) ($data['name'] ?? ''),
             email: $data['email'] ?? null,
             phone: $data['phone'] ?? null,

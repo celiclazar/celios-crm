@@ -15,9 +15,9 @@ class CrmActivityData
         public array $metadata = [],
     ) {}
 
-    public static function fromArray(array $data): static
+    public static function fromArray(array $data): self
     {
-        return new static(
+        return new self(
             type: (string) ($data['type'] ?? 'note'),
             content: (string) ($data['content'] ?? ''),
             userId: isset($data['user_id']) ? (int) $data['user_id'] : null,

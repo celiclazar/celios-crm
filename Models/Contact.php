@@ -35,21 +35,33 @@ class Contact extends Model
         'last_contacted_at' => 'datetime',
     ];
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function assignedUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'assigned_to_user_id');
     }
 
+    /**
+     * @return BelongsTo<FormSubmission, $this>
+     */
     public function formSubmission(): BelongsTo
     {
         return $this->belongsTo(FormSubmission::class, 'form_submission_id');
     }
 
+    /**
+     * @return HasMany<ContactNote, $this>
+     */
     public function interactions(): HasMany
     {
         return $this->hasMany(ContactNote::class)->latest();
     }
 
+    /**
+     * @return HasMany<ContactNote, $this>
+     */
     public function contactNotes(): HasMany
     {
         return $this->hasMany(ContactNote::class)->latest();

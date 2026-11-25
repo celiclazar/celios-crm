@@ -2,8 +2,13 @@
 
 namespace Modules\Crm;
 
+use Celios\Core\Services\ModuleRegistry;
+use Closure;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Modules\Crm\Filament\Resources\Contacts\ContactResource;
+use Modules\Crm\Filament\Support\FormSubmissionCrmBridge;
 use Modules\Crm\Models\Contact;
 use Modules\Crm\Policies\ContactPolicy;
 use Modules\Crm\Services\CrmManager;
@@ -40,6 +45,27 @@ class CrmServiceProvider extends ServiceProvider
             $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'crm');
         }
 
+        if (file_exists(__DIR__.'/Routes/api.php')) {
+            Route::prefix('api')
+                ->middleware('api')
+                ->group(__DIR__.'/Routes/api.php');
+        }
+
         Gate::policy(Contact::class, ContactPolicy::class);
+
+        if (class_exists(ModuleRegistry::class)) {
+            ModuleRegistry::registerNamespace('crm', 'Modules\\Crm\\');
+            ModuleRegistry::registerModule('crm', [
+                'name' => 'CRM & Leads',
+                'description' => 'Manage customer leads, contact pipeline, interaction notes, and form-to-lead conversions.',
+                'icon' => 'heroicon-o-user-group',
+                'resources' => [
+                    ContactResource::class,
+                ],
+            ]);
+            ModuleRegistry::registerFormSubmissionTableColumns('crm', fn (): array => FormSubmissionCrmBridge::tableColumns());
+            ModuleRegistry::registerFormSubmissionTableActions('crm', fn (): array => FormSubmissionCrmBridge::tableActions());
+            ModuleRegistry::registerFormSubmissionHeaderActions('crm', fn (Closure $recordResolver): array => FormSubmissionCrmBridge::headerActions($recordResolver));
+        }
     }
 }
